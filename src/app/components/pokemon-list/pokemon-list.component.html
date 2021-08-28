@@ -1,0 +1,19 @@
+<div class="container-fluid">
+	<div class="row bg-warning">
+		<nav class="navbar bg-danger navbar-light">
+			<p class="fs-1 text-center">Bem Vindo a Pokédex</p>
+			<form class="d-flex">
+				<input class="form-control me-2" type="text" name="searchTerm" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerm">
+			</form>
+		</nav>
+		<div *ngFor="let pokemon of pokemons | searchFilter: searchTerm; let i = index " class="py-5 col-md-3">
+			<div class="card mb-3 border border-danger">
+				<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" class="card-img-top img-fluid" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">{{pokemon.name | titlecase}}</h5>
+					<button type="button" class="btn btn-primary bg-{{getType(pokemon)}}" [routerLink]="['/view', pokemon.name]">Detalhes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
